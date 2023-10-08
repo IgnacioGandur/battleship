@@ -1,8 +1,8 @@
 class Ship {
-    constructor(length, hitsCounter, isSunk = false) {
+    constructor(length) {
         this.length = length;
         this.hitsCounter = 0;
-        this.isSunk = isSunk;
+        this.isSunk = false;
     }
 
     receiveHit() {
