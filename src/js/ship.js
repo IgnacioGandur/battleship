@@ -6,7 +6,12 @@ class Ship {
     }
 
     receiveHit() {
-        this.hitsCounter += 1;
+        if (this.isSunk === false) {
+            this.hitsCounter += 1;
+            this.checkShipHealth();
+        }
+
+        return false;
     }
 
     checkShipHealth() {
@@ -15,3 +20,5 @@ class Ship {
         }
     }
 }
+
+module.exports = Ship;
