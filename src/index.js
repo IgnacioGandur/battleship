@@ -12,4 +12,5 @@ document.querySelector('[data-user-name]').addEventListener('input', () => {
 document.querySelector('[data-start-game-button]').addEventListener('click', () => {
     const [player, computer] = GAME_CONTROLS.setNewGame(userName);
     DOMMethods.renderGameboards(player, computer);
+    DOMMethods.changeIntroScreen();
 });

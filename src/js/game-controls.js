@@ -26,8 +26,12 @@ const GAME_CONTROLS = {
     },
 
     checkForWinner(player, computer) {
-        console.log(player);
-        console.log(computer);
+        if (player.enemyGameboard.allShipsSunk()) {
+            console.log('Player wins');
+        }
+        if (computer.enemyGameboard.allShipsSunk()) {
+            console.log('Computer wins');
+        }
     },
 };
 

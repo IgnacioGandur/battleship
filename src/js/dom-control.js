@@ -1,6 +1,12 @@
+import GAME_CONTROLS from './game-controls';
+
 const DOMMethods = {
     changeIntroScreen() {
-        // document.querySelector('[data-intro-screen]').classList.add('vanish-screen');
+        document.querySelector('[data-intro-screen]').classList.add('vanish-screen');
+        setTimeout(() => {
+            document.querySelector('[data-intro-screen]').style = 'display:none';
+            document.querySelector('[data-game-screen]').style = 'display:block';
+        }, 300);
         // document.querySelector('[data-place-your-ships-screen]').classList.add('appear-screen');
     },
 
@@ -36,6 +42,7 @@ const DOMMethods = {
                     computerGridCell.addEventListener('click', () => {
                         player.takeTurn(a, b);
                         computer.takeTurn();
+                        GAME_CONTROLS.checkForWinner(player, computer);
                         this.renderGameboards(player, computer);
                     });
                 }
@@ -54,4 +61,4 @@ const DOMMethods = {
     },
 };
 
-module.exports = DOMMethods;
+export default DOMMethods;

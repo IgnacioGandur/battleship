@@ -176,6 +176,7 @@ div.place-your-ships-screen > div.gameboard-container > div.row-container > div.
 
 div.game-screen 
 {
+    display: none;
     justify-content:space-between;
     gap:25px;
     padding:25px;
