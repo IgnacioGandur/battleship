@@ -1,6 +1,6 @@
 class Computer {
     constructor(playerGameboard) {
-        this.playerGameboard = playerGameboard;
+        this.enemyGameboard = playerGameboard;
         // Save the coordinates of each attack that has been already launched.
         this.coordinatesAlreadyUsed = [];
     }
@@ -17,6 +17,11 @@ class Computer {
         const isAttackPresent = this.coordinatesAlreadyUsed.some((obj) => obj.row
         === coordinates.row && obj.column === coordinates.column);
 
+        // If all the possible moves were already made by the computer.
+        if (isAttackPresent && this.coordinatesAlreadyUsed.length === 100) {
+            throw new Error('There aren\'t more possible moves.');
+        }
+
         // If the coordinates are already present in the array, call the method recursively.
         if (isAttackPresent) {
             this.takeTurn();
@@ -24,7 +29,7 @@ class Computer {
             console.log(`The coordinates of the computer are; row: ${coordinates.row}, column: ${coordinates.column}`);
             const { row, column } = coordinates;
             this.coordinatesAlreadyUsed.push({ row, column });
-            this.playerGameboard.receiveAttack(row, column);
+            this.enemyGameboard.receiveAttack(row, column);
         }
     }
 }

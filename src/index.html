@@ -6,10 +6,45 @@
     <title>Battleship</title>
 </head>
 <body>
-    <div class="intro-screen">
+    <div class="intro-screen" data-intro-screen>
         <h1 class="main-title">Battleship</h1>
-        <div class="start-game-button platinum-effect">
-            <p>Start Game</p>
+        <div class="start-game-section">
+            <p>Enter you name <span>(optional)</span></p>
+            <input type="text" maxlength="20" data-user-name>
+            <div class="start-game-button platinum-effect" data-start-game-button>
+                <p>Start Game</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="place-your-ships-screen" data-place-your-ships-screen>
+        <h1>Place your ships <span data-player-name>player</span>!</h1>
+        <div class="gameboard-container" data-gameboard-container>
+            
+        </div>
+        <div class="buttons-section">
+            <button>Music on</button>
+            <button>Start the battle!</button>
+            <button>Music off</button>
+        </div>
+    </div> -->
+    <div class="game-screen">
+        <h1>The battle has started!</h1>
+        <div class="gameboards-container">
+            <div class="board-container">
+                <h3 class="title">Your board</h3>
+                <div class="gameboard" data-player-gameboard></div> 
+            </div>
+            <div class="separator"></div>
+            <div class="board-container">
+                <h3 class="title">Computer board</h3>
+                <div class="gameboard" data-computer-gameboard></div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button>Music on</button>
+            <button>Restart game</button>
+            <button>Music off</button>
+
         </div>
     </div>
 </body>

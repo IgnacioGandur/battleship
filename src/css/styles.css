@@ -15,7 +15,7 @@
     --font-main: '1942-report';
     --font-title: 'Urban jungle';
     --padding: 10px;
-    --border-radius: 10px;
+    --border-radius: 5px;
 }
 
 *, *::before, *::after{
@@ -33,7 +33,7 @@ body {
     justify-content:center;
 }
 
-div.intro-screen 
+div.intro-screen, div.place-your-ships-screen, div.game-screen
 {
     background-image: linear-gradient(#00000055, #00000055), url('./../images/background-2.jpg');
     background-size:cover;
@@ -48,9 +48,11 @@ div.intro-screen
     border:5px solid var(--color-white);
     border-radius:5px;
     padding: calc(var(--padding) * 5);
+    animation: appear 750ms linear;
+    transition: opacity 200ms ease;
 }
 
-div.intro-screen > h1 
+div.intro-screen > h1
 {
     font-family: var(--font-title);
     font-weight: 100;
@@ -59,7 +61,46 @@ div.intro-screen > h1
     text-align:center;
 }
 
-div.intro-screen > div.start-game-button 
+div.intro-screen > div.start-game-section 
+{
+    background-color: #ffffff11;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap: 15px;
+    padding: 15px;
+    border:1px solid #ffffff55;
+    border-radius:var(--border-radius);
+    backdrop-filter:blur(5px);
+}
+
+div.intro-screen > div.start-game-section > p 
+{
+    font-family:var(--font-main);
+    font-weight: 100;
+    font-size:1.3rem;
+    color:var(--color-white);
+}
+
+div.intro-screen > div.start-game-section > p > span 
+{
+    font-size: 1rem;
+}
+
+div.intro-screen > div.start-game-section > input 
+{
+    padding:5px;
+    background-color:transparent;
+    border:1px solid #ffffff55;
+    border-radius:5px;
+    padding:5px;
+    color:white;
+    font-family:var(--font-main);
+    font-size:1.3rem;
+    text-align:center;
+}
+
+div.intro-screen > div.start-game-section > div.start-game-button 
 {
     padding: 5px 15px;
     border-radius: 5px;
@@ -68,21 +109,153 @@ div.intro-screen > div.start-game-button
     transition: all 150ms ease-in-out;
 }
 
-div.intro-screen > div.start-game-button:hover 
+div.intro-screen > div.start-game-section > div.start-game-button:hover 
 {
-    scale: 1.2;
+    scale: 1.05;
     cursor:pointer;
 }
 
-div.intro-screen > div.start-game-button:active
+div.intro-screen > div.start-game-section > div.start-game-button:active
 {
-    scale: 0.8;
+    scale: 0.95;
 }
 
-div.intro-screen > div.start-game-button > p 
+div.intro-screen > div.start-game-section > div.start-game-button > p 
 {
+    text-align:center;
     font-size:1.5rem;
 }
+
+/* PLACE YOUR SHIPS SECTION */
+div.place-your-ships-screen
+{
+    background-image: linear-gradient(#00000055, #00000055), url('./../images/background-1.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+div.place-your-ships-screen > h1, div.game-screen > h1
+{
+    font-family:var(--font-main);
+    color:white;
+    font-weight:100;
+    font-size:3rem;
+}
+
+div.place-your-ships-screen > div.gameboard-container
+{
+    width: 600px;
+    height:600px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:stretch;
+    padding: 10px;
+    gap:5px;
+}
+
+div.place-your-ships-screen > div.gameboard-container > div.row-container
+{
+    height: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items:stretch;
+    gap: 3px;
+}
+div.place-your-ships-screen > div.gameboard-container > div.row-container > div.grid-cell
+{
+    width:100%;
+    height: 100%;
+    background: white;
+    border-radius:3px;
+    background-color: #f8f9fa;
+}
+
+/* Main game screen */
+
+div.game-screen 
+{
+    justify-content:space-between;
+    gap:25px;
+    padding:25px;
+}
+
+div.game-screen > div.gameboards-container 
+{
+    display:flex;
+    width: 85%;
+    height: 85%;
+    justify-content:center;
+    gap:10px;
+}
+
+div.game-screen > div.gameboards-container > div.board-container
+{
+    flex: 1 1 auto;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+}
+
+div.game-screen > div.gameboards-container > div.board-container > h3.title
+{
+    font-family:var(--font-main);
+    font-size:2rem;
+    font-weight:100;
+    color:white;
+}
+
+div.game-screen > div.gameboards-container > div.board-container > div.gameboard
+{
+    background-color:#ffffff22;
+    min-width: 500px;
+    min-height: 500px;
+    flex: 1 1 auto;
+    border:1px solid #ffffff33;
+    border-radius:5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:5px;
+    backdrop-filter: blur(5px);
+    padding:10px;
+}
+
+div.game-screen > div.gameboards-container > div.board-container > div.gameboard > div.grid-row
+{
+    display:flex;
+    flex: 1 1 auto;
+    gap: 5px;
+}
+
+div.game-screen > div.gameboards-container > div.board-container > div.gameboard > div.grid-row > div.grid-cell
+{
+    background-color:#ffffff22;
+    height: 100%;
+    width:100%;
+    border: 1px solid #ffffff55;
+    border-radius:5px;
+}
+
+div.game-screen > div.gameboards-container > div.separator 
+{
+    background-color:white;
+    width: 1px;
+    height:90%;
+    opacity:.2;
+    align-self:center;
+}
+
+
+/* ================================ Classes to control animations. ============================= */
+.vanish-screen 
+{
+    opacity: 0;
+}
+
+
+/* ============================================================================================== */
 
 .platinum-effect {
   color: rgba(0, 0, 0, 0.72);
@@ -159,4 +332,25 @@ div.intro-screen > div.start-game-button > p
     #dedeff 84%,
     #555564
   );
+}
+
+/* ===================================== KEY FRAMES SECTION =================================== */
+
+@keyframes appear {
+    0% 
+    {
+        transform: scale(3);
+    }
+    33%
+    {
+        transform: scale(.9)
+    }
+    66%
+    {
+        transform: scale(1.1)
+    }
+    100% 
+    {
+        transform: scale(1);
+    }
 }
