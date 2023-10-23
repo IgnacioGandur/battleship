@@ -137,6 +137,7 @@ div.intro-screen > div.start-game-section > div.start-game-button > p
 
 div.place-your-ships-screen
 {
+    display:none;
     background-image: linear-gradient(#00000055, #00000055), url('./../images/background-1.jpg');
     background-size:cover;
     background-position:center;
@@ -312,7 +313,7 @@ div.place-your-ships-screen > div.gameboard-container > div.row-container > div.
 
 div.game-screen 
 {
-    /* display: none; */
+    display: none;
     justify-content:space-between;
     gap:25px;
     padding:25px;
