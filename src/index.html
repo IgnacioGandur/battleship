@@ -16,17 +16,55 @@
             </div>
         </div>
     </div>
-    <!-- <div class="place-your-ships-screen" data-place-your-ships-screen>
-        <h1>Place your ships <span data-player-name>player</span>!</h1>
-        <div class="gameboard-container" data-gameboard-container>
-            
+    <div class="place-your-ships-screen" data-place-your-ships-screen>
+        <h1>Place your ships!</h1>
+        <div class="gameboard-and-ships-container">
+            <div class="ships-container" data-ships-container>
+                <h1>ships</h1>
+                <div class="ships-section" data-ships-section>
+                    <div class="carrier ship" draggable="true" id="5">
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                    </div>
+                    <div class="battleship ship" draggable="true" id="4">
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                    </div>
+                    <div class="cruiser ship" draggable="true" id="3">
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                    </div>
+                    <div class="submarine ship" draggable="true" id="3">
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                    </div>
+                    <div class="destroyer ship" draggable="true" id="2">
+                        <div class="ship-cell"></div>
+                        <div class="ship-cell"></div>
+                    </div>
+                </div>
+                <p>Ship direction: <span id="ship-direction" data-ship-direction="horizontal"> horizontal</span></p>
+                <p>Ships positioned: <span data-number-of-ships-placed>0</span></p>
+                <button data-change-ship-axis>Rotate ship</button>
+            </div>
+            <div class="gameboard-container">
+                <h1>gameboards</h1>
+                <div class="gameboard" data-place-ships-gameboard></div>
+            </div>
         </div>
         <div class="buttons-section">
             <button>Music on</button>
-            <button>Start the battle!</button>
+            <button data-start-battle-button>Start the battle!</button>
             <button>Music off</button>
         </div>
-    </div> -->
+    </div>
     <div class="game-screen" data-game-screen>
         <h1>The battle has started!</h1>
         <div class="gameboards-container">
@@ -44,7 +82,6 @@
             <button>Music on</button>
             <button>Restart game</button>
             <button>Music off</button>
-
         </div>
     </div>
 </body>
