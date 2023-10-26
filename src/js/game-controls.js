@@ -1,4 +1,5 @@
 import Computer from './computer';
+// eslint-disable-next-line import/no-cycle
 import DOMMethods from './dom-control';
 import Gameboard from './gameboard';
 import Player from './player';
