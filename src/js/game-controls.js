@@ -1,4 +1,5 @@
 import Computer from './computer';
+import DOMMethods from './dom-control';
 import Gameboard from './gameboard';
 import Player from './player';
 import Ship from './ship';
@@ -28,21 +29,14 @@ const GAME_CONTROLS = {
     checkForWinner(player, computer) {
         if (player.enemyGameboard.allShipsSunk()) {
             console.log('Player wins');
+            DOMMethods.showWinnerScreen('Player');
         }
         if (computer.enemyGameboard.allShipsSunk()) {
             console.log('Computer wins');
+            DOMMethods.showWinnerScreen('Computer');
         }
     },
 
-    checkIfShipPlacementIsValid(gameboard, row, column, gridCell) {
-        const DOMCell = gridCell;
-        const gameboardCell = gameboard.grid[row][column];
-        if (gameboardCell.ship !== null) {
-            DOMCell.style.backgroundColor = 'green';
-        } else {
-            DOMCell.style.backgroundColor = '#00000000';
-        }
-    },
     // Prepare ship to be placed by the player.
     prepareShips() {
         // Carrier.
@@ -66,6 +60,7 @@ const GAME_CONTROLS = {
             event.dataTransfer.setData('text/plain', event.target.id);
         });
     },
+
     changeShipAxis() {
         const shipDirection = document.querySelector('#ship-direction');
         if (shipDirection.getAttribute('data-ship-direction') === 'horizontal') {
@@ -76,6 +71,7 @@ const GAME_CONTROLS = {
             document.querySelector('#ship-direction').textContent = 'horizontal';
         }
     },
+
     placeShip(playerGameboard, row, column, shipLength) {
         try {
             const ship = new Ship(shipLength);
@@ -90,8 +86,13 @@ const GAME_CONTROLS = {
             // Change ship direction here.
             playerGameboard.placeShip(ship, row, column, shipDirection);
             document.getElementById(`${shipLength}`).remove();
-        } catch {
-            console.log('error, invalid ship placement.');
+            // Update the ships placed counter.
+            let shipsPlacedCounter = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
+            shipsPlacedCounter += 1;
+            document.querySelector('[data-number-of-ships-placed]').textContent = shipsPlacedCounter;
+        } catch (error) {
+            console.log(error.message);
+            DOMMethods.notifyError(error.message);
         }
     },
 
@@ -131,6 +132,7 @@ const GAME_CONTROLS = {
                     default:
                         return;
                     }
+                // Vertical ship.
                 } else {
                     const randomColumn = Math.floor(Math.random() * 10);
                     const randomRowCase5 = Math.floor(Math.random() * 6);
@@ -156,6 +158,7 @@ const GAME_CONTROLS = {
                 }
             }
             console.log(computerGameboard.grid);
+        // If ships overlap or an error happens, erase the grid, create a new one and try again.
         } catch {
             const computerGB = computerGameboard;
             computerGB.grid = Array(10).fill(null).map(() => Array(10).fill(null).map(() => (
@@ -167,7 +170,7 @@ const GAME_CONTROLS = {
     startBattle() {
         const numberOfShipsPlaced = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
         if (numberOfShipsPlaced < 5) {
-            console.log('the game can\'t start if all the ships are not placed');
+            DOMMethods.notifyError('The game can\'t start if all the ships are not placed.');
             return false;
         }
         console.log('The game has started.');

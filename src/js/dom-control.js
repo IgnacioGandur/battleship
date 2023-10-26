@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import GAME_CONTROLS from './game-controls';
 
 const DOMMethods = {
@@ -9,7 +10,32 @@ const DOMMethods = {
         }, 300);
         // document.querySelector('[data-place-your-ships-screen]').classList.add('appear-screen');
     },
-
+    disappearIntroScreen() {
+        const introScreen = document.querySelector('[data-intro-screen]');
+        introScreen.classList.add('vanish-screen');
+    },
+    showPlaceShipsScreen() {
+        const placeShipsScreen = document.querySelector('[data-place-your-ships-screen]');
+        placeShipsScreen.classList.add('appear-screen');
+    },
+    setUserName(playerName) {
+        if (playerName === '') {
+            return;
+        }
+        document.querySelector('[data-player-name]').textContent = playerName;
+        document.querySelector('[data-game-screen-player-name]').textContent = playerName;
+    },
+    disappearPlaceShipsScreen() {
+        const placeShipsScreen = document.querySelector('[data-place-your-ships-screen]');
+        placeShipsScreen.classList.add('disappear-place-ships-screen');
+        setTimeout(() => {
+            document.querySelector('[data-place-your-ships-screen]').remove();
+        }, 1000);
+    },
+    appearGameScreen() {
+        const gameScreen = document.querySelector('[data-game-screen]');
+        gameScreen.classList.add('appear-game-screen');
+    },
     // Render gameboards to begin game.
     renderGameboards(player, computer) {
         // References to DOM elements.
@@ -84,23 +110,12 @@ const DOMMethods = {
                 } else {
                     gridCell.addEventListener('dragover', (event) => {
                         event.preventDefault();
-                        console.log('enter');
-                        GAME_CONTROLS.checkIfShipPlacementIsValid(gameboard, a, b, gridCell);
-                    });
-                    gridCell.addEventListener('dragleave', (event) => {
-                        event.preventDefault();
-                        console.log('leave');
-                        GAME_CONTROLS.checkIfShipPlacementIsValid(gameboard, a, b, gridCell);
                     });
                     gridCell.addEventListener('drop', (event) => {
                         event.preventDefault();
                         const shipLength = Number(event.dataTransfer.getData('text'));
                         GAME_CONTROLS.placeShip(gameboard, a, b, shipLength);
                         this.renderGameboardToPlaceShips(gameboard);
-                        // Update the ships placed counter.
-                        let shipsPlacedCounter = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
-                        shipsPlacedCounter += 1;
-                        document.querySelector('[data-number-of-ships-placed]').textContent = shipsPlacedCounter;
                     });
                 }
                 gridRow.appendChild(gridCell);
@@ -128,6 +143,45 @@ const DOMMethods = {
                 singleShip.classList.remove('vertical');
             });
         }
+    },
+
+    showWinnerScreen(winner) {
+        // Hide game screen.
+        const winnerName = document.querySelector('[data-game-screen-player-name]').textContent;
+        const gameScreen = document.querySelector('[data-game-screen]');
+        gameScreen.classList.add('disappear-game-screen');
+        setTimeout(() => {
+            gameScreen.style = 'display:none !important;';
+            gameScreen.remove();
+        }, 1000);
+
+        // Show winner screen.
+        const displayWinnerName = document.querySelector('[data-winner-name]');
+        displayWinnerName.textContent = winnerName;
+        const winnerScreen = document.querySelector('[data-winner-screen]');
+        setTimeout(() => {
+            winnerScreen.style = 'display:flex';
+            winnerScreen.classList.add('appear-winner-screen');
+        }, 1200);
+        const playerWinner = document.querySelector('[data-winner]');
+        const computerWinner = document.querySelector('[data-loser]');
+        if (winner === 'Player') {
+            playerWinner.style = 'display:flex !important;';
+            computerWinner.style = 'display:none;';
+        } else if (winner === 'Computer') {
+            computerWinner.style = 'display:flex !important;';
+            playerWinner.style = 'display:none;';
+        }
+    },
+
+    notifyError(error) {
+        const notificationBox = document.querySelector('[data-notification-box]');
+        notificationBox.classList.add('appear-notifications-box');
+        const notificationMessage = document.querySelector('[data-notification-message]');
+        notificationMessage.textContent = error;
+        setTimeout(() => {
+            notificationBox.classList.remove('appear-notifications-box');
+        }, 4000);
     },
 };
 

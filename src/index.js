@@ -28,11 +28,20 @@ changeShipAxisButton.addEventListener('click', () => {
 });
 
 // Button to go to the place ships section.
-const startGameButton = document.querySelector('[data-start-game-button]');
-startGameButton.addEventListener('click', () => {
+const startGameButton = document.querySelector('[data-start-game-form]');
+startGameButton.addEventListener('submit', (e) => {
+    e.preventDefault();
+    DOMMethods.disappearIntroScreen();
     DOMMethods.renderGameboardToPlaceShips(computer.enemyGameboard);
+    DOMMethods.setUserName(userName);
     GAME_CONTROLS.prepareShips();
     GAME_CONTROLS.placeComputerShips(player.enemyGameboard);
+    setTimeout(() => {
+        document.querySelector('[data-intro-screen]').remove();
+    }, 1000);
+    setTimeout(() => {
+        DOMMethods.showPlaceShipsScreen();
+    }, 1050);
 });
 
 // Button to start the battle.
@@ -40,8 +49,16 @@ const startBattleButton = document.querySelector('[data-start-battle-button]');
 startBattleButton.addEventListener('click', () => {
     if (GAME_CONTROLS.startBattle()) {
         DOMMethods.renderGameboards(player, computer);
-    } else {
-        console.log('bla');
+        DOMMethods.disappearPlaceShipsScreen();
+        setTimeout(() => {
+            DOMMethods.appearGameScreen();
+        }, 1000);
     }
-    // GAME_CONTROLS.startBattle();
+});
+
+// Play again button.
+const playAgainButton = document.querySelector('[data-play-again-button]');
+playAgainButton.addEventListener('click', () => {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload();
 });
