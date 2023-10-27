@@ -3,7 +3,8 @@ const Ship = require('./../js/ship'),
     Player = require('./../js/player'),
     Computer = require('./../js/computer');
 
-
+// Try the computers's takeTurn function in an empty gameboard
+// To see if the attack are registered correctly.
 test('Computer takesTurn function', () => {
     const playerGameboard = new Gameboard(),
     computerGameboard = new Gameboard(),

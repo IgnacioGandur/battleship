@@ -27,7 +27,7 @@ changeShipAxisButton.addEventListener('click', () => {
     DOMMethods.rotateShips();
 });
 
-// Button to go to the place ships section.
+// Button to go to "place ships" section.
 const startGameButton = document.querySelector('[data-start-game-form]');
 startGameButton.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -36,9 +36,6 @@ startGameButton.addEventListener('submit', (e) => {
     DOMMethods.setUserName(userName);
     GAME_CONTROLS.prepareShips();
     GAME_CONTROLS.placeComputerShips(player.enemyGameboard);
-    setTimeout(() => {
-        document.querySelector('[data-intro-screen]').remove();
-    }, 1000);
     setTimeout(() => {
         DOMMethods.showPlaceShipsScreen();
     }, 1050);

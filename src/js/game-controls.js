@@ -39,6 +39,7 @@ const GAME_CONTROLS = {
     },
 
     // Prepare ship to be placed by the player.
+    // Adding drag controls to each ship.
     prepareShips() {
         // Carrier.
         document.querySelector('.carrier').addEventListener('dragstart', (event) => {
@@ -62,6 +63,7 @@ const GAME_CONTROLS = {
         });
     },
 
+    // Change the ships direction.
     changeShipAxis() {
         const shipDirection = document.querySelector('#ship-direction');
         if (shipDirection.getAttribute('data-ship-direction') === 'horizontal') {
@@ -73,6 +75,7 @@ const GAME_CONTROLS = {
         }
     },
 
+    // Place the ships after the player drags them into the gameboard.
     placeShip(playerGameboard, row, column, shipLength) {
         try {
             const ship = new Ship(shipLength);
@@ -84,19 +87,18 @@ const GAME_CONTROLS = {
                 shipDirection = false;
             }
 
-            // Change ship direction here.
             playerGameboard.placeShip(ship, row, column, shipDirection);
+            // Remove the ships after being placed.
             document.getElementById(`${shipLength}`).remove();
             // Update the ships placed counter.
             let shipsPlacedCounter = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
             shipsPlacedCounter += 1;
             document.querySelector('[data-number-of-ships-placed]').textContent = shipsPlacedCounter;
         } catch (error) {
-            console.log(error.message);
             DOMMethods.notifyError(error.message);
         }
     },
-
+    // Randomly place the computer ships.
     placeComputerShips(computerGameboard) {
         try {
             // Create ships for the computer.
@@ -109,7 +111,7 @@ const GAME_CONTROLS = {
 
             // Append them into the gameboard depending of the ship length and the random number.
             for (let a = 0; a < ships.length; a += 1) {
-                // Decide ship direction, if === 0 horizontal, if === 1 vertical.
+                // Decide ship direction; if === 0 is horizontal, if === 1 is vertical.
                 const shipDirection = Math.floor(Math.random() * 2);
                 if (shipDirection === 0) {
                     const randomRow = Math.floor(Math.random() * 10);
@@ -158,9 +160,10 @@ const GAME_CONTROLS = {
                     }
                 }
             }
-            console.log(computerGameboard.grid);
         // If ships overlap or an error happens, erase the grid, create a new one and try again.
+        // Calling the function recursively.
         } catch {
+            // New computer gameboard.
             const computerGB = computerGameboard;
             computerGB.grid = Array(10).fill(null).map(() => Array(10).fill(null).map(() => (
                 { ship: null, hit: false })));
@@ -168,6 +171,7 @@ const GAME_CONTROLS = {
         }
     },
 
+    // Check if the player has placed all the ships to start the battle.
     startBattle() {
         const numberOfShipsPlaced = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
         if (numberOfShipsPlaced < 5) {

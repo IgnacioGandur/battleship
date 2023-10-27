@@ -82,7 +82,7 @@ test('Keep track of missed attacks', () => {
 // Check's if all the ships have been sunken. ====== PENDING TO COMPLETE ====== 
 test('Check if all ships have been sunk', () => {
     const gameboard = new Gameboard(),
-        ship1 = new Ship(3);
+        ship1 = new Ship(3),
         ship2 = new Ship(4);
     gameboard.placeShip(ship1, 0, 0, true);
     gameboard.placeShip(ship2, 1, 0, true);

@@ -26,7 +26,7 @@ class Computer {
         if (isAttackPresent) {
             this.takeTurn();
         } else {
-            console.log(`The coordinates of the computer are; row: ${coordinates.row}, column: ${coordinates.column}`);
+            // Destructure the coordinates object into separate variables to launch attack.
             const { row, column } = coordinates;
             this.coordinatesAlreadyUsed.push({ row, column });
             this.enemyGameboard.receiveAttack(row, column);

@@ -1,9 +1,9 @@
 class Gameboard {
     constructor() {
+        // Create the gameboard grid.
         this.grid = Array(10).fill(null).map(() => Array(10).fill(null).map(() => (
             { ship: null, hit: false })));
         this.missedAttacks = 0;
-        // this.allShipsSunk = false;
     }
 
     // Check if ship placement is out of boundaries.
@@ -17,7 +17,7 @@ class Gameboard {
         if (isHorizontal) {
             // If the ship placement overflows the grid's horizontal positioning, throw error.
             if ((col + ship.length) > 10) {
-                throw new Error('Invalid ship placement, the ship exceeds the grid.');
+                throw new Error('Invalid ship placement, the ship exceeds the gameboard.');
             }
 
             let gridColumn = col;
@@ -32,10 +32,11 @@ class Gameboard {
             for (let i = 0; i < shipLength; i += 1, gridColumn += 1) {
                 this.grid[row][gridColumn].ship = ship;
             }
+        // If the positioning is vertical.
         } else {
             // If the ship placement overflows the grid's vertical positioning, throw error.
             if ((row + ship.length) > 10) {
-                throw new Error('Invalid ship placement, the ship exceeds the grid.');
+                throw new Error('Invalid ship placement, the ship exceeds the gameboard.');
             }
 
             let gridRow = row;

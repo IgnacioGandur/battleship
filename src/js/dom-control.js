@@ -2,17 +2,12 @@
 import GAME_CONTROLS from './game-controls';
 
 const DOMMethods = {
-    changeIntroScreen() {
-        document.querySelector('[data-intro-screen]').classList.add('vanish-screen');
-        setTimeout(() => {
-            document.querySelector('[data-intro-screen]').style = 'display:none';
-            document.querySelector('[data-game-screen]').style = 'display:block';
-        }, 300);
-        // document.querySelector('[data-place-your-ships-screen]').classList.add('appear-screen');
-    },
     disappearIntroScreen() {
         const introScreen = document.querySelector('[data-intro-screen]');
         introScreen.classList.add('vanish-screen');
+        setTimeout(() => {
+            document.querySelector('[data-intro-screen]').remove();
+        }, 1000);
     },
     showPlaceShipsScreen() {
         const placeShipsScreen = document.querySelector('[data-place-your-ships-screen]');
