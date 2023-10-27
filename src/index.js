@@ -20,17 +20,11 @@ const computerGameboard = new Gameboard();
 const player = new Player(userName, computerGameboard);
 const computer = new Computer(playerGameboard);
 
-// Button to change the ship axis to be placed on the gameboard.
-const changeShipAxisButton = document.querySelector('[data-change-ship-axis]');
-changeShipAxisButton.addEventListener('click', () => {
-    GAME_CONTROLS.changeShipAxis();
-    DOMMethods.rotateShips();
-});
-
 // Button to go to "place ships" section.
 const startGameButton = document.querySelector('[data-start-game-form]');
 startGameButton.addEventListener('submit', (e) => {
     e.preventDefault();
+    DOMMethods.playMusic();
     DOMMethods.disappearIntroScreen();
     DOMMethods.renderGameboardToPlaceShips(computer.enemyGameboard);
     DOMMethods.setUserName(userName);
@@ -39,6 +33,13 @@ startGameButton.addEventListener('submit', (e) => {
     setTimeout(() => {
         DOMMethods.showPlaceShipsScreen();
     }, 1050);
+});
+
+// Button to change the ship axis to be placed on the gameboard.
+const changeShipAxisButton = document.querySelector('[data-change-ship-axis]');
+changeShipAxisButton.addEventListener('click', () => {
+    GAME_CONTROLS.changeShipAxis();
+    DOMMethods.rotateShips();
 });
 
 // Button to start the battle.

@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import GAME_CONTROLS from './game-controls';
+import soundTrack from '../music/main-theme.mp3';
 
 const DOMMethods = {
     disappearIntroScreen() {
@@ -168,7 +169,6 @@ const DOMMethods = {
             playerWinner.style = 'display:none;';
         }
     },
-
     notifyError(error) {
         const notificationBox = document.querySelector('[data-notification-box]');
         notificationBox.classList.add('appear-notifications-box');
@@ -177,6 +177,11 @@ const DOMMethods = {
         setTimeout(() => {
             notificationBox.classList.remove('appear-notifications-box');
         }, 4000);
+    },
+    playMusic() {
+        const mainTheme = new Audio(soundTrack);
+        mainTheme.volume = 0.2;
+        mainTheme.play();
     },
 };
 
