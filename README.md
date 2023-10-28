@@ -22,7 +22,7 @@ Once you place all your ships and click the "Start the battle" button, the game 
 
 Click on the computer's gameboard to attack, the computer will attack you immediately after you attack it.
 
-> [!Notes]
+> [!Note]
 > - A red gameboard cell indicates a missed attack.
 > - A green gameboard cell indicates the attack landed on a ship.
 > - A white gameboard cell indicates a ship placed in your gameboard.
