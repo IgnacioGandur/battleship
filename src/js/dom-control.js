@@ -158,7 +158,6 @@ const DOMMethods = {
 
     showWinnerScreen(winner) {
         // Hide game screen.
-        // const winnerName = document.querySelector('[data-game-screen-player-name]').textContent;
         const gameScreen = document.querySelector('[data-game-screen]');
         gameScreen.classList.add('disappear-game-screen');
         setTimeout(() => {
@@ -167,8 +166,6 @@ const DOMMethods = {
         }, 1000);
 
         // Show winner screen.
-        // const displayWinnerName = document.querySelector('[data-winner-name]');
-        // displayWinnerName.textContent = winnerName;
         const winnerScreen = document.querySelector('[data-winner-screen]');
         const pirateFlag = document.querySelector('[data-pirate-flag]');
         const pirateBones = document.querySelector('[data-pirate-bones]');

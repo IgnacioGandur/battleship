@@ -643,19 +643,6 @@ div.winner-screen
     gap:20px;
 }
 
-/* div.winner-screen > div.message
-{
-    display:flex;
-    flex-direction:column;
-    justify-content: flex-start;
-    align-items:center;
-    width: 50%;
-    height: 100%;
-    background-color: #ffffff22;
-    border-radius:var(--border-radius);
-    padding:25px;
-} */
-
 div.winner-screen > div.winner,
 div.winner-screen > div.loser
 {
