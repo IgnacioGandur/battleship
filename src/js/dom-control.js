@@ -78,10 +78,14 @@ const DOMMethods = {
                 } else {
                     computerGridCell.addEventListener('click', () => {
                         player.takeTurn(a, b);
-                        computer.takeTurn();
                         GAME_CONTROLS.checkForWinner(player, computer);
                         this.shotSoundEffect();
                         this.renderGameboards(player, computer);
+                        setTimeout(() => {
+                            computer.takeTurn();
+                            this.shotSoundEffect();
+                            this.renderGameboards(player, computer);
+                        }, 1000);
                     });
                 }
                 computerGridRow.appendChild(computerGridCell);
