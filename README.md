@@ -2,11 +2,11 @@
 
 A Battleship game for the Odin Project.
 
-![alt text](./src/images/page-preview.png?raw=true)
+![Main page of the game](./src/images/page-preview.png?raw=true)
 
 With a very simple drag and drop implementation to place your ships in a 10x10 gameboard.
 
-![alt text](./src/images/page-preview-place-ships.png?raw=true)
+![Place your ships screen](./src/images/page-preview-place-ships.png?raw=true)
 
 The game is played with 5 ships for each player: 
 
@@ -18,11 +18,17 @@ The game is played with 5 ships for each player:
 
 Once you place all your ships and click the "Start the battle" button, the game will start.
 
-![alt text](./src/images/page-preview-game-screen.png?raw=true)
+![Game screen](./src/images/page-preview-game-screen.png?raw=true)
 
 Click on the computer's gameboard to attack, the computer will attack you immediately after you attack it.
 
+> [!Notes]
+> - A red gameboard cell indicates a missed attack.
+> - A green gameboard cell indicates the attack landed on a ship.
+> - A white gameboard cell indicates a ship placed in your gameboard.
+> - A transparent gameboard cell indicates that hasn't been attacked yet.
+
 The game will finish once you sunk all the computer's ships or once the computer sunk all of your ships.
 
-![alt text](./src/images/page-preview-winner-screen.png?raw=true)
+![Winner screen](./src/images/page-preview-winner-screen.png?raw=true)
 
