@@ -31,10 +31,12 @@ const GAME_CONTROLS = {
         if (player.enemyGameboard.allShipsSunk()) {
             console.log('Player wins');
             DOMMethods.showWinnerScreen('Player');
+            DOMMethods.winnerSound();
         }
         if (computer.enemyGameboard.allShipsSunk()) {
             console.log('Computer wins');
             DOMMethods.showWinnerScreen('Computer');
+            DOMMethods.loserSound();
         }
     },
 
@@ -94,6 +96,7 @@ const GAME_CONTROLS = {
             let shipsPlacedCounter = Number(document.querySelector('[data-number-of-ships-placed]').textContent);
             shipsPlacedCounter += 1;
             document.querySelector('[data-number-of-ships-placed]').textContent = shipsPlacedCounter;
+            DOMMethods.splashSoundEffect();
         } catch (error) {
             DOMMethods.notifyError(error.message);
         }

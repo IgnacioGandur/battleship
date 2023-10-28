@@ -1,6 +1,15 @@
 // eslint-disable-next-line import/no-cycle
 import GAME_CONTROLS from './game-controls';
 import soundTrack from '../music/main-theme.mp3';
+import beepSoundEffect from '../music/beep-sound-effect.mp3';
+import switchSFX from '../music/switch.mp3';
+import waterSplash from '../music/water-splash.mp3';
+import shotSoundEffect from '../music/shot-sound-effect.mp3';
+import typeWriterSoundEffect from '../music/typewriter.mp3';
+import winnerSound from '../music/winner-trumpet.mp3';
+import sadTrombone from '../music/sadTrombone.mp3';
+import pirateFlagImage from '../images/pirate-flag.svg';
+import pirateBonesImage from '../images/skull.svg';
 
 const DOMMethods = {
     disappearIntroScreen() {
@@ -10,10 +19,12 @@ const DOMMethods = {
             document.querySelector('[data-intro-screen]').remove();
         }, 1000);
     },
+
     showPlaceShipsScreen() {
         const placeShipsScreen = document.querySelector('[data-place-your-ships-screen]');
         placeShipsScreen.classList.add('appear-screen');
     },
+
     setUserName(playerName) {
         if (playerName === '') {
             return;
@@ -21,6 +32,7 @@ const DOMMethods = {
         document.querySelector('[data-player-name]').textContent = playerName;
         document.querySelector('[data-game-screen-player-name]').textContent = playerName;
     },
+
     disappearPlaceShipsScreen() {
         const placeShipsScreen = document.querySelector('[data-place-your-ships-screen]');
         placeShipsScreen.classList.add('disappear-place-ships-screen');
@@ -28,10 +40,12 @@ const DOMMethods = {
             document.querySelector('[data-place-your-ships-screen]').remove();
         }, 1000);
     },
+
     appearGameScreen() {
         const gameScreen = document.querySelector('[data-game-screen]');
         gameScreen.classList.add('appear-game-screen');
     },
+
     // Render gameboards to begin game.
     renderGameboards(player, computer) {
         // References to DOM elements.
@@ -66,6 +80,7 @@ const DOMMethods = {
                         player.takeTurn(a, b);
                         computer.takeTurn();
                         GAME_CONTROLS.checkForWinner(player, computer);
+                        this.shotSoundEffect();
                         this.renderGameboards(player, computer);
                     });
                 }
@@ -143,7 +158,7 @@ const DOMMethods = {
 
     showWinnerScreen(winner) {
         // Hide game screen.
-        const winnerName = document.querySelector('[data-game-screen-player-name]').textContent;
+        // const winnerName = document.querySelector('[data-game-screen-player-name]').textContent;
         const gameScreen = document.querySelector('[data-game-screen]');
         gameScreen.classList.add('disappear-game-screen');
         setTimeout(() => {
@@ -152,9 +167,13 @@ const DOMMethods = {
         }, 1000);
 
         // Show winner screen.
-        const displayWinnerName = document.querySelector('[data-winner-name]');
-        displayWinnerName.textContent = winnerName;
+        // const displayWinnerName = document.querySelector('[data-winner-name]');
+        // displayWinnerName.textContent = winnerName;
         const winnerScreen = document.querySelector('[data-winner-screen]');
+        const pirateFlag = document.querySelector('[data-pirate-flag]');
+        const pirateBones = document.querySelector('[data-pirate-bones]');
+        pirateFlag.src = pirateFlagImage;
+        pirateBones.src = pirateBonesImage;
         setTimeout(() => {
             winnerScreen.style = 'display:flex';
             winnerScreen.classList.add('appear-winner-screen');
@@ -169,6 +188,7 @@ const DOMMethods = {
             playerWinner.style = 'display:none;';
         }
     },
+
     notifyError(error) {
         const notificationBox = document.querySelector('[data-notification-box]');
         notificationBox.classList.add('appear-notifications-box');
@@ -178,10 +198,63 @@ const DOMMethods = {
             notificationBox.classList.remove('appear-notifications-box');
         }, 4000);
     },
+
+    // Music controls.
+    mainTheme: new Audio(soundTrack),
     playMusic() {
-        const mainTheme = new Audio(soundTrack);
-        mainTheme.volume = 0.2;
-        mainTheme.play();
+        this.mainTheme.volume = 0.1;
+        this.mainTheme.loop = true;
+        this.mainTheme.play();
+    },
+
+    pauseMusic() {
+        this.mainTheme.pause();
+    },
+
+    unpauseMusic() {
+        this.mainTheme.play();
+    },
+
+    beepSoundEffect() {
+        const soundEffect = new Audio(beepSoundEffect);
+        soundEffect.volume = 0.3;
+        soundEffect.play();
+    },
+
+    clickSoundEffect() {
+        const clickSFX = new Audio(switchSFX);
+        clickSFX.volume = 0.2;
+        clickSFX.play();
+    },
+
+    splashSoundEffect() {
+        const waterSplashSFX = new Audio(waterSplash);
+        waterSplashSFX.volume = 0.2;
+        waterSplashSFX.play();
+    },
+
+    shotSoundEffect() {
+        const shotSFX = new Audio(shotSoundEffect);
+        shotSFX.volume = 0.1;
+        shotSFX.play();
+    },
+
+    typeWriterSoundEffect() {
+        const typeWriterSFX = new Audio(typeWriterSoundEffect);
+        typeWriterSFX.volume = 0.3;
+        typeWriterSFX.play();
+    },
+
+    winnerSound() {
+        const winnerSFX = new Audio(winnerSound);
+        winnerSFX.volume = 0.1;
+        winnerSFX.play();
+    },
+
+    loserSound() {
+        const loserSFX = new Audio(sadTrombone);
+        loserSFX.volume = 0.1;
+        loserSFX.play();
     },
 };
 
